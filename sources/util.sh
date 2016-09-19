@@ -19,9 +19,9 @@ else
 fi
 readonly TAGINFO_SCRIPT="$1"
 
-if [ ! -v LAST_MESSAGE_TIMESTAMP ]; then
+#if [ ! -v LAST_MESSAGE_TIMESTAMP ]; then
     typeset -i -x LAST_MESSAGE_TIMESTAMP=$(date +%s)
-fi
+#fi
 
 print_message_impl() {
     local function="$1"; shift
@@ -41,7 +41,7 @@ print_message() {
 }
 
 ruby_command_line() {
-    echo -n -E "env - ${TAGINFO_RUBY:-ruby} -E utf-8 -w -I $SRCDIR/lib"
+    echo -n -E "env - /usr/local/bin/ruby -E utf-8 -w -I $SRCDIR/lib"
 }
 
 get_config() {
@@ -99,7 +99,7 @@ run_sql() {
 
     print_message_impl "${FUNCNAME[1]}" "$message"
 
-    local SQLITE="sqlite3 -bail -batch -init $UTILDIR/setup.sql $database"
+    local SQLITE="sqlite3 -bail -init $UTILDIR/setup.sql $database"
     if [ ${#macros[@]} -eq 0 ]; then
         $SQLITE <$sql_file
     else

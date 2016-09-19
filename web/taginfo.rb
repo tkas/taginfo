@@ -43,7 +43,7 @@ require 'date'
 
 require 'sinatra/base'
 require 'sinatra/r18n'
-require 'rack/contrib'
+require 'rack/jsonp'
 
 require 'lib/utils.rb'
 require 'lib/config.rb'
@@ -61,7 +61,7 @@ TaginfoConfig.read
 
 #------------------------------------------------------------------------------
 
-DATA_UNTIL = SQL::Database.init('../../data');
+DATA_UNTIL = SQL::Database.init('../data');
 
 class Taginfo < Sinatra::Base
 
